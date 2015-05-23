@@ -1,0 +1,6 @@
+nick = ''
+password = ''
+join_channels = ['#bla']
+active_channels = ['bla']
+unlimited_channels = ['bla']
+
