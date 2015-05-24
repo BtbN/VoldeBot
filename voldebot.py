@@ -64,8 +64,14 @@ class MarkovBot(IRCBot):
 
             next_word = self.redis_conn.srandmember(self.make_key(key))
 
+            counter = 0
+
             while next_word and self.is_bad_word(next_word):
-                next_word = self.redis_conn.srandmember(self.make_key(key))
+                if counter > 100:
+                    next_word = None
+                else:
+                    next_word = self.redis_conn.srandmember(self.make_key(key))
+                counter += 1
 
             if not next_word:
                 break
@@ -108,7 +114,8 @@ class MarkovBot(IRCBot):
         if len(messages) and (channel not in self.channel_timers or channel in self.unlimited_channels or time.time() - self.channel_timers[channel] > self.cooldown):
             self.channel_timers[channel] = time.time()
             resmsg = random.choice(messages)
-            print("In #%s: <%s> %s ;;; -> %s" % (channel, sender, message, resmsg))
+            print("In #%s: <%s> %s" % (channel, sender, message))
+            print("-> %s" % resmsg)
             return resmsg
 
     def command_patterns(self):
