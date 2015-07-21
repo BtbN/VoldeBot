@@ -100,7 +100,7 @@ class MarkovBot(IRCBot):
     def log(self, sender, message, channel):
         say_something = self.is_ping(message) or (sender != self.conn.nick and random.random() < self.chattiness)
 
-        if channel not in self.active_channels:
+        if channel not in self.active_channels and sender != 'oromit':
             say_something = False
 
         if message.startswith('/'):
