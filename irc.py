@@ -285,7 +285,7 @@ class IRCBot(object):
         return inner
     
     def is_ping(self, message):
-        return re.search(r'([:,\s]|^)%s([:,\s\.\?\!]|$)' % re.escape(self.conn.nick), message, re.I) is not None
+        return re.search(r'([:,\s]|^)%s([:,\'\s\.\?\!]|$)' % re.escape(self.conn.nick), message, re.I) is not None
     
     def fix_ping(self, message):
         return re.sub('^%s[:,\s]\s*' % self.conn.nick, '', message, flags=re.I)
