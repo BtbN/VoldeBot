@@ -122,5 +122,5 @@ class MarkovBot(IRCBot):
         return (('.*', self.log),)
 
 if __name__ == "__main__":
-    run_bot(MarkovBot, 'irc.twitch.tv', 6667, distdata.nick, distdata.join_channels, distdata.password)
+    run_bot(MarkovBot, 'irc.chat.twitch.tv', 6667, distdata.nick, distdata.join_channels, distdata.password)
 
